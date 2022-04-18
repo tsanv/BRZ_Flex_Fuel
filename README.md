@@ -36,5 +36,8 @@ Using a fuel sensor, we can collect the fuel content and send this signal to the
 Inspiration came from here:
 https://www.ft86club.com/forums/showthread.php?t=94751
 
+Amazing resource to create SSD1306 displays!:
+https://rickkas7.github.io/DisplayGenerator/index.html
+
 Core code for flex fuel sensor conversion from here:
 https://forums.nasioc.com/forums/showthread.php?t=2810122
