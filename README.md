@@ -16,7 +16,7 @@ This is a work in progress and has not been yet fully tested! I only wanted to t
 
 
 ## Picture
-* BRZ Startup car: https://www.carthrottle.com/post/lrgyqx7/
+
 
 
 ## How does it work?
@@ -41,3 +41,5 @@ https://rickkas7.github.io/DisplayGenerator/index.html
 
 Core code for flex fuel sensor conversion from here:
 https://forums.nasioc.com/forums/showthread.php?t=2810122
+
+BRZ Startup car Logo: https://www.carthrottle.com/post/lrgyqx7/
