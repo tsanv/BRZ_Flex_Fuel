@@ -110,12 +110,6 @@ static const unsigned char PROGMEM smallBrzCar [] ={
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
-// FACE CODE HERE
-
-static const unsigned char PROGMEM pointy[] ={
-0x60, 0x06, 0xf0, 0x0f, 0xf8, 0x1f, 0x7c, 0x3e, 0x3e, 0x7c, 0x1f, 0xf8, 0x0f, 0xf0, 0x07, 0xe0,
-0x03, 0xc0, 0x01, 0x80,
-};
 
 /* Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
 Pins:
@@ -177,9 +171,9 @@ void setup()
   display.setTextColor(WHITE);
   display.setRotation(0);// Rotate the display at the start:  0, 1, 2 or 3 = (0, 90, 180 or 270 degrees)
   display.clearDisplay();
-  display.drawBitmap(0, 0, brzCar, 128, 64, WHITE); //draw v3 car here
+  display.drawBitmap(0, 5, brzCar, 128, 64, WHITE); //draw v3 car here
   display.display();
-  delay(3000); //start up screen
+  delay(2000); //start up screen
 }
 
 void loop()
@@ -209,28 +203,19 @@ if (ethanol > 99) // Avoid overflow in PWM
   analogWrite(outPin, pwm_output); //write the PWM value to output pin
   delay(100);  //make screen more easily readable by not updating it too often
 
-
-
-//FACE LOOP here
+  //Ethanol Screen here
   ethanolScreen();
-  delay(5000);
-  //boing();
-  //boing();
-  //drawOpeneyes(22, 26);
-  //delay(1000);
-  //drawClosedyes(22);
-  //delay(50);
-  //drawOpeneyes(22, 26);
- // delay(1000);
-  //drawNarrowMouth(16, 16);
-  //delay(1000);
-  //drawOpeneyes(22, 26);
-  //delay(1000);
+  //Face loop here
+  delay(3000);
   drawOpeneyes(22, 26);
   delay(500);
   drawClosedyes(22);
   delay(50);
   drawOpeneyes(22, 26);
+  delay(500);
+  drawWinkEyes(22,26);
+  delay(50);
+    drawOpeneyes(22, 26);
   delay(500);
 }
 
@@ -292,9 +277,6 @@ void setPwmFrequency(int pin, int divisor) { //This code snippet raises the time
 }
 
 
-
-
-
 void drawOpeneyes(int eyeWidth, int eyeHeight) {
   display.clearDisplay();
   display.fillRoundRect(0, 20, eyeWidth, eyeHeight, eyeWidth/2, WHITE);
@@ -310,48 +292,12 @@ void drawClosedyes(int eyeWidth) {
   display.fillRoundRect(display.width()/2-20, display.height()-10, 40, 10, 5, WHITE);
   display.display();
 }
-
-void drawNarrowMouth(int eyeWidth, int eyeHeight) {
+void drawWinkEyes(int eyeWidth, int eyeHeight) {
   display.clearDisplay();
-  display.fillRoundRect(0, 20, eyeWidth, eyeHeight, eyeWidth/2, WHITE);
-  display.fillRoundRect(display.width()-eyeWidth, 20, eyeWidth, eyeHeight, eyeWidth/2, WHITE);
-  display.fillRoundRect(display.width()/2-35, display.height()-10, 70, 10, 5, WHITE);
+  display.fillRoundRect(0, 30, eyeWidth, 6, 3, WHITE); // left eye
+  display.fillRoundRect(display.width()-eyeWidth, 20, eyeWidth, eyeHeight, eyeWidth/2, WHITE); //right eye
+  display.fillRoundRect(display.width()/2-20, display.height()-10, 40, 10, 5, WHITE); // mouth
   display.display();
-}
-
-void boing() {
-  int eyeWidth = 22, eyeHeight = 26, animSpeed = 4, eyeStretch = 10;
-
-  int eyePosY;
-
-
-  for(int i = -eyeStretch ; i <= 50-26; i+=animSpeed){
-    eyePosY = max(i, 0);
-
-    display.clearDisplay();
-    display.fillRoundRect(0, eyePosY, eyeWidth, eyeHeight, eyeWidth/2, WHITE);
-    display.fillRoundRect(display.width()-eyeWidth, eyePosY, eyeWidth, eyeHeight, eyeWidth/2, WHITE);
-    display.drawBitmap(display.width()/2-8, display.height()-20, pointy, 16, 10, WHITE);
-    display.display();
-
-
-    if(i>=64-eyeWidth-eyeStretch) eyeHeight -= animSpeed;
-    else if(i<0) eyeHeight += animSpeed;
-  }
-
-
-  for(int i = 50-26; i > -eyeStretch; i-=animSpeed){
-    eyePosY = max(i, 0);
-
-    display.clearDisplay();
-    display.fillRoundRect(0, eyePosY, eyeWidth, eyeHeight, eyeWidth/2, WHITE);
-    display.fillRoundRect(display.width()-eyeWidth, eyePosY, eyeWidth, eyeHeight, eyeWidth/2, WHITE);
-    display.drawBitmap(display.width()/2-8, display.height()-20, pointy, 16, 10, WHITE);
-    display.display();
-    if(i>64-eyeWidth-eyeStretch) eyeHeight += animSpeed;
-    else if(i<=0) eyeHeight -= animSpeed;
-  }
-
 }
 
 //X goes ->
@@ -376,6 +322,6 @@ void ethanolScreen() {
     Serial.println(pwm_output);
     Serial.println(expectedv);
     Serial.println(HZ);
-    display.drawBitmap(40, 32, smallBrzCar, 60, 40, WHITE); //draw v3 small car 
+    display.drawBitmap(40, 32, smallBrzCar, 60, 40, WHITE); //draw v3 small car
     display.display();
 }
