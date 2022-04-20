@@ -12,7 +12,7 @@ I wanted to create my own flex fuel kit without paying over $500 dollars to just
 This is a work in progress and has not been yet fully tested! I only wanted to try this for fun and I will be placing this into my BRZ. There are many forums out there that have done a DIY flex fuel kit.
 
 ## Demo
-BRZ oLED display screen
+BRZ oLED display screen \
 ![BRZ LCD Demo](./Pictures/demo.gif)
 
 ## Picture
