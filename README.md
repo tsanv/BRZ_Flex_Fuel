@@ -22,7 +22,7 @@ BRZ oLED display screen \
 ## How does it work?
 Using a fuel sensor, we can collect the fuel content and send this signal to the ecu via O2 sensor.
 Access o2 sensor by A21 connector by A34 in ECU by foot. \
-![ECU connections] (./Pictures/ECU_connections.png)
+![ECU connections] (./Pictures/ECU_Connections.png)
 
 ## Hardware
 
